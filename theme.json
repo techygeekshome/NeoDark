@@ -1,0 +1,47 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/theme.json",
+    "version": 2,
+    "settings": {
+        "color": {
+            "custom": true,
+            "customGradient": false,
+            "defaultPalette": false,
+            "palette": [
+                { "slug": "background", "color": "#0b0b0d", "name": "Background" },
+                { "slug": "card", "color": "#111113", "name": "Card" },
+                { "slug": "border", "color": "#1f1f22", "name": "Border" },
+                { "slug": "text", "color": "#e5e7eb", "name": "Text" },
+                { "slug": "text-secondary", "color": "#9ca3af", "name": "Muted Text" },
+                { "slug": "primary", "color": "#38bdf8", "name": "Primary" },
+                { "slug": "primary-hover", "color": "#0ea5e9", "name": "Primary Hover" }
+            ]
+        },
+        "typography": {
+            "customFontSize": true
+        },
+        "spacing": {
+            "units": [ "px", "em", "rem", "%" ],
+            "padding": true,
+            "margin": true,
+            "blockGap": true
+        },
+        "border": {
+            "color": true,
+            "radius": true,
+            "width": true
+        }
+    },
+    "styles": {
+        "color": {
+            "background": "#0b0b0d",
+            "text": "#e5e7eb"
+        },
+        "elements": {
+            "link": {
+                "color": {
+                    "text": "#38bdf8"
+                }
+            }
+        }
+    }
+}

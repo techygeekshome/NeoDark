@@ -1,0 +1,3319 @@
+/*
+Theme Name: NeoDark
+Theme URI: https://techygeekshome.info/neodark/
+Description: A fast, lightweight dark-mode WordPress theme built for tech guides, tutorials and review sites. Built for TechyGeeksHome.
+Author: TechyGeeksHome
+Author URI: https://techygeekshome.info
+Version: 1.1.7
+Requires at least: 6.4
+Tested up to: 7.0
+Requires PHP: 7.4
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: neodark
+Tags: blog, one-column, custom-menu, custom-logo, featured-images, footer-widgets, threaded-comments, translation-ready, block-patterns, block-styles, editor-style, wide-blocks
+*/
+
+/* =====================================
+   Root Variables
+===================================== */
+
+:root {
+    --bg: #0b0b0d;
+    --card: #111113;
+    --border: #1f1f22;
+    --text: #e5e7eb;
+    --text-secondary: #9ca3af;
+    --primary: #38bdf8;
+    --primary-hover: #0ea5e9;
+    --radius: 16px;
+    --container-width: 1300px;
+}
+
+/* =====================================
+   Base
+===================================== */
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.7;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nd-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* =====================================
+   Layout: Homepage Wrapper
+===================================== */
+
+.nd-homepage {
+    padding-top: 60px;
+}
+
+/* =====================================
+   Header
+===================================== */
+
+.nd-header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: rgba(9,9,11,.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nd-header .nd-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 80px;
+}
+
+.nd-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+}
+
+.nd-logo a {
+    color: var(--text);
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.nd-search-btn {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+/* =====================================
+   Primary Menu (Desktop)
+===================================== */
+
+.nd-header-center {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start; /* left aligned */
+}
+
+.nd-main-nav {
+    width: auto;
+}
+
+.nd-main-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;               /* horizontal */
+    flex-direction: row;         /* left → right */
+    align-items: center;
+    gap: 32px;
+}
+
+.nd-main-menu li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.nd-main-menu a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+}
+
+.nd-main-menu a:hover {
+    color: #38bdf8;
+}
+
+.nd-main-menu .menu-item-has-children > a::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-left: 6px;
+    margin-bottom: 2px;
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    opacity: .6;
+    transform: rotate(45deg);
+}
+
+/* =====================================
+   Dropdown Submenus (desktop)
+===================================== */
+
+.nd-main-menu .sub-menu {
+    list-style: none;
+    margin: 0;
+    padding: 8px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .45);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+    z-index: 100;
+}
+
+.nd-main-menu li:hover > .sub-menu,
+.nd-main-menu li:focus-within > .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nd-main-menu .sub-menu li {
+    padding: 0;
+}
+
+.nd-main-menu .sub-menu a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.nd-main-menu .sub-menu a:hover {
+    background: rgba(56, 189, 248, .08);
+    color: var(--primary);
+}
+
+/* Third-level (and deeper) submenus open to the right instead of stacking downward */
+.nd-main-menu .sub-menu .sub-menu {
+    top: 0;
+    left: 100%;
+}
+
+/* =====================================
+   Mobile submenu indentation
+===================================== */
+
+.nd-mobile-menu-list .sub-menu {
+    list-style: none;
+    margin: 12px 0 0 16px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* =====================================
+   Mobile Menu
+===================================== */
+
+.nd-mobile-toggle {
+    display: none;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 12px;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.nd-mobile-menu {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+}
+
+.nd-mobile-menu-close {
+    align-self: flex-end;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.nd-mobile-menu-close:hover,
+.nd-mobile-menu-close:focus-visible {
+    color: #38bdf8;
+    border-color: #38bdf8;
+}
+
+.nd-mobile-menu.active {
+    display: flex;
+}
+
+.nd-mobile-menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.nd-mobile-menu-list a {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+.nd-mobile-menu-list a:hover {
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .nd-header-center {
+        display: none;
+    }
+
+    .nd-mobile-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* =====================================
+   Hero
+===================================== */
+
+.nd-hero {
+    padding: 40px 0 100px;
+}
+
+.nd-hero-slider {
+    width: 100%;
+    height: 560px;
+    position: relative;
+	overflow: hidden;
+    border-radius: 16px;
+}
+
+.nd-hero-slider .swiper-wrapper,
+.nd-hero-slider .swiper-slide {
+    height: 100%;
+}
+
+.nd-hero .nd-container {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.nd-badge {
+    display: inline-block;
+    padding: 10px 16px;
+    background: rgba(14,165,233,.10);
+    color: var(--primary);
+    border: 1px solid rgba(14,165,233,.25);
+    border-radius: 999px;
+    margin-bottom: 24px;
+}
+
+.nd-hero-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+    line-height: 1.05;
+    margin: 0 0 20px;
+    font-weight: 800;
+}
+
+.nd-hero-description {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    max-width: 700px;
+}
+
+.nd-hero-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.nd-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: .25s ease;
+}
+
+.nd-btn-primary {
+    background: var(--primary);
+    color: #ffffff;
+}
+
+.nd-btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+.nd-btn-secondary {
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--card);
+}
+
+.nd-btn-secondary:hover {
+    border-color: var(--primary);
+}
+
+/* =====================================
+   HERO FEATURED CARD
+===================================== */
+
+.nd-feature-card {
+    height: 100%;
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.nd-feature-bg {
+    position: absolute;
+    inset: -12px;
+    width: calc(100% + 24px);
+    height: calc(100% + 24px);
+    object-fit: cover;
+    object-position: center;
+    filter: blur(20px) saturate(1.15);
+    transform: scale(1.12);
+    z-index: 0;
+}
+
+.nd-feature-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.85)
+    );
+    z-index: 1;
+}
+
+.nd-feature-card-header,
+.nd-feature-meta {
+    position: relative;
+    z-index: 2;
+}
+
+.nd-hero-slider .nd-feature-meta {
+    margin-bottom: 70px;
+}
+
+.nd-feature-category {
+    color: #38bdf8;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-size: .75rem;
+    opacity: .85;
+}
+
+.nd-feature-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.4rem;
+    line-height: 1.3;
+}
+
+.nd-feature-card h2 a {
+    color: #ffffff;
+}
+
+.nd-feature-readtime {
+    font-size: .75rem;
+    opacity: .85;
+}
+
+/* =====================================
+   Section Header
+===================================== */
+
+.nd-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.nd-section-header h2 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+/* =====================================
+   Post Grid & Cards
+===================================== */
+
+.nd-post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.nd-post-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: .25s ease;
+}
+
+.nd-post-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary);
+}
+
+.nd-post-card a {
+    display: block;
+    color: inherit;
+}
+
+.nd-landing .nd-feature-card {
+    height: 100%;
+    box-sizing: border-box;
+    transition: transform .25s ease, border-color .25s ease;
+}
+
+/* The default card/border colours (var(--card), var(--border)) sit only a
+   few points lighter than the page background, so on these landing pages
+   the cards read as flat near-black blocks rather than distinct cards.
+   Bump both up slightly here, scoped to .nd-landing only. */
+.nd-landing .has-card-background-color.has-background {
+    background-color: #232329 !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.nd-landing .has-border-color {
+    border-color: #3d3d46 !important;
+}
+
+.wp-block-rank-math-faq-block {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.nd-landing .nd-feature-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary);
+}
+
+.nd-check {
+    color: #22c55e;
+    font-weight: 700;
+}
+
+.nd-dash {
+    color: #ef4444;
+}
+
+.nd-post-thumb {
+    position: relative;
+}
+
+.nd-post-thumb img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.nd-post-category-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(9,9,11,.85);
+    color: var(--primary);
+    font-size: .7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+}
+
+.nd-post-content {
+    padding: 24px;
+}
+
+.nd-post-category {
+    color: var(--primary);
+    font-size: .875rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.nd-post-title {
+    margin: 0 0 15px;
+    line-height: 1.35;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.nd-post-meta {
+    color: var(--text-secondary);
+    font-size: .9rem;
+}
+
+/* =====================================
+   Trust Badges
+===================================== */
+
+.nd-trust-badges {
+    padding: 40px 0 100px;
+}
+
+.nd-trust-badges-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+}
+
+.nd-trust-badge {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.nd-trust-badge-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.nd-trust-badge-title {
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.nd-trust-badge-desc {
+    color: var(--text-secondary);
+    font-size: .875rem;
+    line-height: 1.5;
+}
+
+/* =====================================
+   Featured Guides Section
+===================================== */
+
+.nd-featured-posts {
+    padding-bottom: 100px;
+}
+
+.nd-featured-posts .nd-post-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* =====================================
+   Latest Posts Section
+===================================== */
+
+.nd-latest-posts {
+    padding-bottom: 100px;
+}
+
+.nd-latest-posts .nd-post-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* =====================================
+   Trending Posts Section (homepage)
+===================================== */
+
+.nd-trending-section {
+    padding-bottom: 100px;
+}
+
+.nd-trending-section .nd-trending-posts {
+    margin: 0;
+}
+
+.nd-trending-section .nd-trending-posts__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    counter-reset: nd-trending;
+}
+
+.nd-trending-section .nd-trending-posts__item {
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    counter-increment: nd-trending;
+    transition: transform .25s ease, border-color .25s ease;
+}
+
+.nd-trending-section .nd-trending-posts__item:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary);
+}
+
+.nd-trending-section .nd-trending-posts__item::before {
+    content: counter(nd-trending);
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 700;
+    font-size: .8rem;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nd-trending-section .nd-trending-posts__thumb {
+    display: block;
+    width: 100%;
+}
+
+.nd-trending-section .nd-trending-posts__thumb img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: calc(var(--radius) - 4px);
+}
+
+.nd-trending-section .nd-trending-posts__link {
+    color: var(--text);
+    font-weight: 600;
+    font-size: .95rem;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+.nd-trending-section .nd-trending-posts__link:hover {
+    color: var(--primary);
+}
+
+@media (max-width: 992px) {
+    .nd-trending-section .nd-trending-posts__list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =====================================
+   Browse By Category
+===================================== */
+
+.nd-category-cards {
+    padding-bottom: 100px;
+}
+
+.nd-category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.nd-category-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    text-align: center;
+    color: var(--text);
+    transition: .25s ease;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nd-category-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+}
+
+.nd-category-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.nd-category-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.nd-category-card-count {
+    color: var(--text-secondary);
+    font-size: .95rem;
+}
+
+@media (max-width: 1000px) {
+    .nd-category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =====================================
+   Category Sections
+===================================== */
+
+.nd-category-section {
+    padding-bottom: 100px;
+}
+
+.nd-category-section .nd-section-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.nd-category-section .nd-post-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.nd-view-all {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.nd-view-all:hover {
+    color: var(--primary-hover);
+}
+
+/* =====================================
+   Single Article
+===================================== */
+
+.nd-single {
+    padding: 60px 0 100px;
+}
+
+/* Article header: title block + featured image, 2 columns */
+
+.nd-article-header {
+    margin-bottom: 56px;
+}
+
+.nd-article-header-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.nd-article-header-image img {
+    width: 100%;
+    height: 100%;
+    max-height: 360px;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+.nd-article-category {
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.nd-article-title {
+    font-size: clamp(2.2rem,4vw,3.2rem);
+    line-height: 1.15;
+    margin-bottom: 16px;
+    font-weight: 800;
+}
+
+.nd-article-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 640px;
+    margin: 0 0 20px;
+}
+
+.nd-article-intro {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    max-width: 640px;
+    margin: 0 0 20px;
+}
+
+/* =====================================
+   404 Page
+   ===================================== */
+
+.nd-404-hero {
+    text-align: center;
+    max-width: 640px;
+    margin: 40px auto 60px;
+}
+
+.nd-404-hero .nd-article-intro {
+    max-width: 100%;
+}
+
+.nd-404-search {
+    margin: 28px 0;
+}
+
+.nd-404-search .nd-search-form {
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.nd-404-search .nd-search-input {
+    flex: 1;
+}
+
+.nd-404-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.nd-404-quicklinks {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+.nd-404-quicklink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 12px;
+    color: var(--text);
+    font-weight: 600;
+    font-size: .95rem;
+    transition: .25s ease;
+}
+
+.nd-404-quicklink:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.nd-404-quicklink-icon {
+    font-size: 1.6rem;
+}
+
+@media (max-width: 700px) {
+    .nd-404-quicklinks {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nd-404-search .nd-search-form {
+        flex-direction: column;
+    }
+}
+
+.nd-article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: .95rem;
+}
+
+.nd-article-meta-author {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nd-article-meta-author img {
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+}
+
+.nd-meta-divider {
+    margin: 0 10px;
+    color: var(--text-secondary);
+}
+
+/* 3-column body: TOC sidebar | content | related sidebar */
+
+.nd-article-layout {
+    display: grid;
+    grid-template-columns: 240px minmax(0, 1fr) 280px;
+    gap: 48px;
+    align-items: start;
+}
+
+.nd-article-layout .nd-toc-sidebar { grid-column: 1; }
+.nd-article-layout .nd-article { grid-column: 2; }
+.nd-article-layout .nd-related-sidebar { grid-column: 3; }
+
+/* Defensive fallback: if a post has too few headings to render a
+   Table of Contents, reclaim its track instead of letting the grid
+   shift content/sidebar into the wrong columns by DOM order. */
+.nd-article-layout:not(:has(.nd-toc-sidebar)) {
+    grid-template-columns: minmax(0, 1fr) 280px;
+}
+.nd-article-layout:not(:has(.nd-toc-sidebar)) .nd-article {
+    grid-column: 1;
+}
+.nd-article-layout:not(:has(.nd-toc-sidebar)) .nd-related-sidebar {
+    grid-column: 2;
+}
+
+.nd-article-content {
+    font-size: 1.15rem;
+    line-height: 1.9;
+}
+
+.nd-article-content a,
+.nd-page-content a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.nd-article-content a:hover,
+.nd-page-content a:hover {
+    color: var(--primary-hover);
+}
+
+.nd-affiliate-disclosure {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: 12px 16px;
+    border-left: 3px solid var(--primary);
+    background: rgba(255, 255, 255, 0.03);
+    margin: 24px 0;
+}
+
+.nd-article-content h2,
+.nd-article-content h3,
+.nd-article-content h4 {
+    margin-top: 50px;
+}
+
+.nd-article-content img {
+    border-radius: 16px;
+}
+
+/* =====================================
+   Breadcrumbs
+===================================== */
+
+.nd-breadcrumbs {
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.nd-breadcrumbs-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    color: #a1a1aa;
+}
+
+.nd-breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nd-breadcrumb-item a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.nd-breadcrumb-item a:hover {
+    text-decoration: underline;
+}
+
+.nd-breadcrumb-item:not(:last-child)::after {
+    content: "/";
+    color: #52525b;
+}
+
+.nd-breadcrumb-current {
+    color: var(--text);
+}
+
+/* =====================================
+   Related Posts Sidebar
+===================================== */
+
+.nd-related-sidebar {
+    position: sticky;
+    top: 100px;
+}
+
+.nd-related-sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    margin: 0 0 20px;
+}
+
+.nd-related-sidebar-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.nd-related-sidebar-item a {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.nd-related-sidebar-thumb {
+    flex: 0 0 64px;
+}
+
+.nd-related-sidebar-thumb img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.nd-related-sidebar-body {
+    flex: 1;
+}
+
+.nd-related-sidebar-item-title {
+    font-size: .92rem;
+    line-height: 1.35;
+    font-weight: 700;
+    margin: 0 0 6px;
+}
+
+.nd-related-sidebar-item-date {
+    font-size: .8rem;
+    color: var(--text-secondary);
+}
+
+.nd-related-sidebar-viewall {
+    display: inline-block;
+    margin-top: 20px;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.nd-related-sidebar-viewall:hover {
+    color: var(--primary-hover);
+}
+
+/* =====================================
+   Table of Contents
+===================================== */
+
+.nd-toc-sidebar {
+    position: sticky;
+    top: 100px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
+}
+
+.nd-toc-title {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-bottom: 18px;
+    color: var(--text);
+}
+
+.nd-toc-list {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.nd-toc-list li {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.nd-toc-list a {
+    color: var(--text-secondary);
+    font-size: .9rem;
+    transition: .25s ease;
+}
+
+.nd-toc-list a:hover {
+    color: var(--primary);
+    padding-left: 4px;
+}
+
+/* =====================================
+   Tables
+===================================== */
+
+.wp-block-table {
+    margin: 40px 0;
+}
+
+.wp-block-table table,
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+table th {
+    background: rgba(255,255,255,0.05);
+    color: var(--text);
+    font-weight: 700;
+}
+
+table th,
+table td {
+    padding: 18px 24px;
+    border: 1px solid var(--border);
+    text-align: left;
+}
+
+table tr:hover {
+    background: rgba(255,255,255,0.03);
+}
+
+/* Narrow 3-column article/page layout: let wide tables scroll horizontally
+   instead of wrapping cell text into cramped multi-line rows. */
+.nd-article-content .wp-block-table,
+.nd-page-content .wp-block-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.nd-article-content .wp-block-table table,
+.nd-page-content .wp-block-table table {
+    white-space: nowrap;
+}
+
+/* =====================================
+   Author Box
+===================================== */
+
+.nd-author-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    margin-top: 60px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.nd-author-avatar img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nd-author-content {
+    flex: 1;
+}
+
+.nd-author-name {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin: 0 0 10px;
+}
+
+.nd-author-title {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.nd-author-bio {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    max-width: 700px;
+}
+
+.nd-author-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.nd-author-link {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 12px;
+    color: var(--primary);
+    font-weight: 600;
+    transition: .25s ease;
+}
+
+.nd-author-link:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .nd-author-box {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .nd-author-avatar img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .nd-author-links {
+        justify-content: center;
+    }
+}
+
+/* =====================================
+   Responsive & Mobile
+===================================== */
+
+@media (max-width: 1000px) {
+
+    .nd-post-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nd-hero .nd-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .nd-hero-actions {
+        justify-content: center;
+    }
+
+    .nd-hero-slider {
+        height: 220px;
+    }
+
+    .nd-feature-card {
+        height: 220px;
+        min-height: 220px;
+        padding: 20px;
+    }
+
+    .nd-hero-slider .nd-feature-meta {
+        margin-bottom: 28px;
+    }
+
+    .nd-category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .nd-article-header-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nd-article-header-image {
+        order: -1;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .nd-article-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .nd-toc-sidebar,
+    .nd-related-sidebar {
+        position: static;
+        max-height: none;
+    }
+
+    /* Fix: the base rules above give .nd-toc-sidebar / .nd-article /
+       .nd-related-sidebar explicit grid-column: 1 / 2 / 3 placement.
+       Collapsing grid-template-columns to a single track here doesn't
+       remove that placement, so the article and related sidebar were
+       still being pushed into separate implicit columns instead of
+       stacking under the ToC. Move them into the single column too. */
+    .nd-article-layout .nd-article,
+    .nd-article-layout .nd-related-sidebar {
+        grid-column: 1;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .nd-header .nd-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .nd-hero-title {
+        font-size: clamp(2.4rem, 10vw, 3.4rem);
+    }
+
+    .nd-hero-description {
+        font-size: 1.05rem;
+    }
+
+    .nd-hero-slider {
+        height: 200px;
+    }
+
+    .nd-feature-card {
+        height: 200px;
+        min-height: 200px;
+        padding: 18px;
+    }
+
+    .nd-hero-slider .nd-feature-meta {
+        margin-bottom: 24px;
+    }
+
+    .nd-feature-card h2 {
+        font-size: 1.2rem;
+    }
+
+    .nd-category-card {
+        padding: 22px;
+        min-height: 150px;
+    }
+
+    .nd-author-box {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .nd-author-avatar img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .nd-author-links {
+        justify-content: center;
+    }
+
+    .nd-trust-badges-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+
+    .nd-hero-title {
+        font-size: 2.2rem;
+    }
+
+    .nd-hero-slider {
+        height: 180px;
+    }
+
+    .nd-feature-card {
+        height: 180px;
+        min-height: 180px;
+        padding: 16px;
+    }
+
+    .nd-hero-slider .nd-feature-meta {
+        margin-bottom: 20px;
+    }
+
+    .nd-post-thumb img {
+        height: 180px;
+    }
+
+    .nd-category-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nd-category-card {
+        min-height: 140px;
+    }
+
+    .nd-trust-badges-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =====================================
+   Code & Preformatted
+===================================== */
+
+pre {
+    background: #111827;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    overflow-x: auto;
+    margin: 30px 0;
+}
+
+code {
+    font-family: Consolas, Monaco, monospace;
+}
+
+pre code {
+    color: #e5e7eb;
+    background: transparent;
+    padding: 0;
+}
+
+:not(pre) > code {
+    background: #18181b;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 6px;
+}
+
+/* =====================================
+   Footer
+===================================== */
+
+.nd-footer {
+    background: #1f1f22;
+    padding: 40px 0 20px;
+    color: #e5e5e5;
+    border-top: 1px solid #3f3f46;
+}
+
+.nd-footer-widgets {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.nd-footer-column {
+    flex: 1;
+}
+
+.nd-footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    border-top: 1px solid #3f3f46;
+    padding-top: 20px;
+}
+
+.nd-footer-menu {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 20px;
+}
+
+.nd-footer-menu li {
+    margin: 0;
+    padding: 0;
+}
+
+.nd-footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+}
+
+.nd-footer-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    border-radius: 999px;
+    color: #ffffff;
+    font-size: 13px;
+    transition: background .15s ease, border-color .15s ease;
+}
+
+.nd-footer-social-link:hover {
+    background: #323236;
+    border-color: #52525b;
+}
+
+.nd-footer-copy {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+
+/* =====================================
+   Search Overlay
+===================================== */
+
+.nd-search-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(9,9,11,.95);
+    backdrop-filter: blur(16px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.nd-search-overlay.active {
+    display: flex;
+}
+
+.nd-search-panel {
+    position: relative;
+    width: min(600px, 100% - 40px);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 56px 24px 24px;
+}
+
+.nd-search-overlay-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #09090b;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.nd-search-overlay-close:hover,
+.nd-search-overlay-close:focus-visible {
+    color: #38bdf8;
+    border-color: #38bdf8;
+}
+
+.nd-search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #09090b;
+    color: var(--text);
+    box-sizing: border-box;
+}
+
+/* =====================================
+   Archive / Category / Author / 404
+===================================== */
+
+.nd-archive-header {
+    padding: 40px 0 20px;
+}
+
+.nd-archive-title {
+    font-size: 2.2rem;
+    margin: 0 0 10px;
+    font-weight: 800;
+}
+
+.nd-archive-description {
+    color: var(--text-secondary);
+    max-width: 700px;
+}
+
+.nd-archive-grid {
+    padding: 20px 0 80px;
+}
+
+.nd-archive-pagination {
+    padding: 40px 0 80px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.nd-archive-pagination .page-numbers {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+}
+
+.nd-archive-pagination .page-numbers.current,
+.nd-archive-pagination .page-numbers:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+/* =====================================
+   Utility Classes
+===================================== */
+
+.nd-hidden {
+    display: none !important;
+}
+
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+    word-wrap: normal !important;
+}
+
+.skip-link {
+    position: absolute;
+    top: -60px;
+    left: 0;
+    z-index: 10000;
+    background: var(--primary);
+    color: #09090b;
+    font-weight: 700;
+    padding: 14px 24px;
+    border-radius: 0 0 10px 0;
+    transition: top .15s ease;
+}
+
+.skip-link:focus {
+    top: 0;
+    clip: auto;
+    clip-path: none;
+    width: auto;
+    height: auto;
+    position: absolute;
+    overflow: visible;
+    margin: 0;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* =====================================
+   Wide/Full Alignment
+   Constrains WP core alignwide/alignfull
+   from breaking layout inconsistently
+   inside Pages and single-post content.
+===================================== */
+
+.nd-article-content .alignwide,
+.nd-page-content .alignwide {
+    max-width: 1100px;
+    width: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.nd-article-content .alignfull,
+.nd-page-content .alignfull {
+    max-width: 100vw;
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.nd-article-content .alignfull img,
+.nd-page-content .alignfull img {
+    width: 100%;
+}
+
+.nd-page-content .alignwide.has-background,
+.nd-page-content .alignfull.has-background,
+.nd-article-content .alignwide.has-background,
+.nd-article-content .alignfull.has-background {
+    padding: 32px calc(50vw - 50%);
+    box-sizing: border-box;
+}
+
+.nd-center {
+    text-align: center;
+}
+
+.nd-flex {
+    display: flex;
+}
+
+.nd-flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nd-mt-20 { margin-top: 20px; }
+.nd-mt-40 { margin-top: 40px; }
+.nd-mt-60 { margin-top: 60px; }
+
+.nd-mb-20 { margin-bottom: 20px; }
+.nd-mb-40 { margin-bottom: 40px; }
+.nd-mb-60 { margin-bottom: 60px; }
+
+/* =====================================
+   Final Polish
+===================================== */
+
+.nd-feature-card,
+.nd-post-card,
+.nd-category-card,
+.nd-author-box,
+.nd-toc,
+.nd-search-panel {
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.03);
+}
+
+.nd-btn-primary,
+.nd-author-link {
+    box-shadow: 0 2px 6px rgba(14,165,233,0.25);
+}
+
+.nd-btn-primary:hover,
+.nd-author-link:hover {
+    box-shadow: 0 4px 12px rgba(14,165,233,0.35);
+}
+
+/* =====================================
+   AUTHOR SOCIAL ICONS — NEO DARK (ENCODED)
+===================================== */
+
+.nd-author-social-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Fallback (generic link icon) */
+.nd-icon-website {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 100 20 10 10 0 000-20zm0 2c1.7 0 3.3.5 4.6 1.4L13 10h-2V4zm-4.6 1.4A8 8 0 0112 4v6H6l1.4-6.6zM4 12c0-1.7.5-3.3 1.4-4.6L10 11v2H4zm2.4 4.6A8 8 0 0112 20v-6H6l.4 2.6zM20 12c0 1.7-.5 3.3-1.4 4.6L14 13v-2h6zm-2.4-4.6A8 8 0 0112 4v6h6l-.4-2.6z'/%3E%3C/svg%3E");
+}
+
+/* Twitter */
+.nd-icon-twitter {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0022.43.36a9.09 9.09 0 01-2.88 1.1A4.52 4.52 0 0016.11 0c-2.63 0-4.77 2.14-4.77 4.77 0 .37.04.73.12 1.07C7.69 5.7 4.07 3.8 1.64.9a4.77 4.77 0 00-.65 2.4c0 1.65.84 3.11 2.12 3.97A4.52 4.52 0 01.96 7v.06c0 2.31 1.64 4.23 3.81 4.67a4.52 4.52 0 01-2.15.08c.61 1.9 2.38 3.29 4.48 3.33A9.07 9.07 0 010 19.54 12.8 12.8 0 006.92 22c8.3 0 12.84-6.88 12.84-12.84 0-.2 0-.39-.01-.58A9.22 9.22 0 0023 3z'/%3E%3C/svg%3E");
+}
+
+/* Facebook */
+.nd-icon-facebook {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M22 12a10 10 0 10-11.5 9.9v-7h-2v-3h2v-2.3c0-2 1.2-3.1 3-3.1.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 3h-1.9v7A10 10 0 0022 12z'/%3E%3C/svg%3E");
+}
+
+/* Instagram */
+.nd-icon-instagram {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 4a5 5 0 100 10 5 5 0 000-10zm6-1a1 1 0 100 2 1 1 0 000-2z'/%3E%3C/svg%3E");
+}
+
+/* LinkedIn */
+.nd-icon-linkedin {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M4.98 3.5C4.98 5 3.9 6 2.5 6S0 5 0 3.5 1.08 1 2.5 1s2.48 1 2.48 2.5zM.5 8h4v16h-4V8zm7.5 0h3.8v2.2h.05c.53-1 1.83-2.2 3.77-2.2 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.9c0-1.9-.03-4.3-2.62-4.3-2.62 0-3.02 2.05-3.02 4.16V24h-4V8z'/%3E%3C/svg%3E");
+}
+
+/* GitHub */
+.nd-icon-github {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 .5A12 12 0 000 12.6c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1.8-.8.8-.8-.5-1.3-.2-2.3.1-2.6-2.7-.3-5.5-1.4-5.5-6.1 0-1.3.5-2.4 1.2-3.3-.1-.3-.5-1.6.1-3.3 0 0 1-.3 3.3 1.2a11.4 11.4 0 016 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 3 .1 3.3.7.9 1.2 2 1.2 3.3 0 4.7-2.8 5.8-5.5 6.1.3.3.6.9.6 1.8v2.7c0 .3.2.7.8.6A12 12 0 0012 .5z'/%3E%3C/svg%3E");
+}
+
+/* YouTube */
+.nd-icon-youtube {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M23 7a3 3 0 00-3-3H4a3 3 0 00-3 3v10a3 3 0 003 3h16a3 3 0 003-3V7zM9 16V8l7 4-7 4z'/%3E%3C/svg%3E");
+}
+
+/* TikTok */
+.nd-icon-tiktok {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 2h4a5 5 0 005 5v4a9 9 0 11-9-9z'/%3E%3C/svg%3E");
+}
+
+/* Pinterest */
+.nd-icon-pinterest {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 2a10 10 0 00-3 19l1-6s-1-1 0-3c1-2 3-2 3-2s3 0 3 3c0 3-2 5-4 5l-1 6A10 10 0 0012 2z'/%3E%3C/svg%3E");
+}
+
+/* VK */
+.nd-icon-vk {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M2 7h3l2 5 2-5h3l-3 7 3 7h-3l-2-5-2 5H2l3-7z'/%3E%3C/svg%3E");
+}
+
+/* Mastodon */
+.nd-icon-mastodon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 2c5 0 9 2 9 6v8c0 4-4 6-9 6s-9-2-9-6V8c0-4 4-6 9-6z'/%3E%3C/svg%3E");
+}
+
+/* Bluesky */
+.nd-icon-bsky {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 2l4 8-4 12-4-12 4-8z'/%3E%3C/svg%3E");
+}
+
+/* =====================================
+   AUTHOR SOCIAL BUTTONS — NEO DARK
+===================================== */
+
+.nd-author-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.nd-author-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: #27272a;
+    color: #ffffff;
+    border-radius: 6px;
+    font-size: 14px;
+    text-decoration: none;
+    border: 1px solid #3f3f46;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+/* Hover lift effect */
+.nd-author-social-link:hover {
+    transform: translateY(-2px);
+    background: #323236;
+    border-color: #52525b;
+}
+
+/* =====================================
+   COMMENTS BOX — NEO DARK
+===================================== */
+
+#comments {
+    margin-top: 40px;
+}
+
+#comments h3,
+#reply-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #ffffff;
+}
+
+/* Comment list */
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+}
+
+.comment {
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.comment .comment-author {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.comment .comment-meta {
+    font-size: 13px;
+    color: #a1a1aa;
+    margin-bottom: 8px;
+}
+
+/* Comment text */
+.comment .comment-content {
+    color: #e4e4e7;
+    line-height: 1.6;
+}
+
+/* Reply link */
+.comment-reply-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #60a5fa;
+    text-decoration: none;
+}
+
+.comment-reply-link:hover {
+    text-decoration: underline;
+}
+
+/* =====================================
+   COMMENT FORM — NEO DARK (FINAL CLEAN)
+===================================== */
+
+#commentform {
+    background: #27272a;
+    border: 1px solid #3f3f46;
+    padding: 20px;
+    border-radius: 6px;
+
+    /* Correct layout behaviour */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#commentform p {
+    margin-bottom: 16px;
+}
+
+#commentform label {
+    display: block;
+    margin-bottom: 6px;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+/* Inputs */
+#commentform input[type="text"],
+#commentform input[type="email"],
+#commentform input[type="url"],
+#commentform textarea {
+    width: 95%;
+    max-width: 100%;
+    padding: 10px 12px;
+    background: #1f1f22;
+    border: 1px solid #3f3f46;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+    height: auto;
+    min-height: 40px;
+    line-height: normal;
+    resize: vertical;
+}
+
+#commentform input:focus,
+#commentform textarea:focus {
+    border-color: #52525b;
+    outline: none;
+}
+
+/* Submit button */
+#commentform input[type="submit"] {
+    background: #3b82f6;
+    color: #ffffff;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+}
+
+/* Hover lift */
+#commentform input[type="submit"]:hover {
+    background: #60a5fa;
+    transform: translateY(-2px);
+}
+/* PAGE LAYOUT RESET — stops blog layout from affecting pages */
+.nd-page {
+    padding: 40px 0;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Remove blog layout classes from pages */
+.nd-page .nd-container,
+.nd-page .nd-content-card,
+.nd-page .nd-main,
+.nd-page .nd-archive,
+.nd-page .nd-post-card {
+    all: unset;
+    display: block;
+}
+
+/* Clean page content card */
+.nd-page-content {
+    background: #1f1f22;
+    padding: 30px;
+    border-radius: 6px;
+    border: 1px solid #3f3f46;
+    margin-top: 20px;
+}
+
+/* Clean page hero */
+.nd-page-hero {
+    margin-bottom: 30px;
+}
+
+.nd-page-title {
+    font-size: 32px;
+    margin: 0 0 10px;
+}
+
+/* =====================================
+   Landing Page Template (Full Width)
+   Used by template-landing.php — no title/breadcrumb, no card wrapper,
+   so alignwide/alignfull blocks can actually reach full width instead
+   of fighting the 900px content-card constraint above.
+===================================== */
+
+.nd-landing {
+    width: 100%;
+}
+
+.nd-landing > * {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.nd-landing > .alignwide {
+    max-width: 1100px;
+}
+
+.nd-landing > .alignfull {
+    max-width: none;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* =====================================
+   Block Pattern Library — NeoDark
+   (styles for /patterns — see inc/block-patterns.php)
+===================================== */
+
+/* Verdict Box */
+.nd-pattern-verdict {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin: 40px 0;
+}
+
+.nd-verdict-score {
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 8px 0 16px;
+}
+
+/* Pros & Cons */
+.nd-pattern-pros-cons {
+    margin: 40px 0;
+    gap: 24px;
+}
+
+.nd-pros,
+.nd-cons {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+}
+
+.nd-pros h4 {
+    color: #4ade80;
+}
+
+.nd-cons h4 {
+    color: #f87171;
+}
+
+.nd-pros ul,
+.nd-cons ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.nd-pros li,
+.nd-cons li {
+    margin-bottom: 8px;
+}
+
+.nd-pros li::marker {
+    color: #4ade80;
+}
+
+.nd-cons li::marker {
+    color: #f87171;
+}
+
+/* Spec Table block style */
+.is-style-nd-spec-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.is-style-nd-spec-table td {
+    padding: 14px 20px;
+    border: 1px solid var(--border);
+}
+
+.is-style-nd-spec-table tr:first-child td {
+    background: rgba(255,255,255,0.05);
+}
+
+/* Comparison Table block style (Pro) */
+.is-style-nd-comparison-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.is-style-nd-comparison-table td {
+    padding: 14px 20px;
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.is-style-nd-comparison-table td:first-child {
+    text-align: left;
+    color: var(--text-secondary);
+}
+
+.is-style-nd-comparison-table tr:first-child td {
+    background: rgba(255,255,255,0.05);
+    color: var(--text);
+}
+
+/* Comparison Table block style (Pro) - mobile: the table has no minimum
+   width, so on phones its 3+ columns get crushed into unreadably narrow
+   cells instead of staying legible. Make the block wrapper scroll
+   horizontally and give the table a sensible minimum width so columns
+   keep their proportions and the user scrolls sideways instead. */
+@media (max-width: 600px) {
+    .is-style-nd-comparison-table {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .is-style-nd-comparison-table table {
+        min-width: 480px;
+    }
+    .is-style-nd-comparison-table td {
+        padding: 10px 14px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Quick Facts */
+.nd-pattern-quick-facts {
+    background: rgba(14,165,233,.08);
+    border: 1px solid rgba(14,165,233,.25);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin: 40px 0;
+}
+
+.nd-pattern-quick-facts h4 {
+    margin-top: 0;
+    color: var(--primary);
+}
+
+.nd-pattern-quick-facts ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.nd-pattern-quick-facts li {
+    margin-bottom: 8px;
+}
+
+/* Affiliate Disclosure */
+.nd-pattern-disclosure {
+    font-size: .875rem;
+    color: var(--text-secondary);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 30px 0;
+}
+
+/* Deal Callout (Pro) */
+.nd-pattern-deal {
+    background: linear-gradient(135deg, rgba(14,165,233,.15), rgba(14,165,233,.03));
+    border: 1px solid rgba(14,165,233,.3);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    margin: 40px 0;
+}
+
+.nd-deal-label {
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-size: .75rem;
+    margin: 0 0 8px;
+}
+
+.nd-pattern-deal h3 {
+    margin: 0 0 20px;
+}
+
+.nd-deal-button .wp-block-button__link {
+    background: var(--primary);
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 12px 22px;
+    font-weight: 600;
+}
+
+.nd-deal-button .wp-block-button__link:hover {
+    background: var(--primary-hover);
+}
+
+/* Step-by-Step Box (Pro) */
+.nd-pattern-steps {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin: 40px 0;
+}
+
+.nd-pattern-steps h4 {
+    margin-top: 0;
+}
+
+.nd-pattern-steps ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.nd-pattern-steps li {
+    margin-bottom: 10px;
+}
+
+/* =====================================
+   WooCommerce
+   Rendered via woocommerce.php (not single.php/archive.php),
+   wrapped in the site's standard .nd-container so it gets full
+   site width rather than the 900px blog-page reading column.
+===================================== */
+
+.nd-woocommerce-page {
+    padding: 50px 0 80px;
+}
+
+.nd-woocommerce-content {
+    color: var(--text);
+}
+
+.nd-woocommerce-content h1.entry-title,
+.nd-woocommerce-content h1.product_title {
+    font-size: 2.1rem;
+    font-weight: 800;
+    margin: 0 0 20px;
+}
+
+/* Breadcrumb */
+.nd-woocommerce-content .nd-breadcrumbs,
+.woocommerce-breadcrumb {
+    font-size: .85rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.nd-breadcrumbs-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+}
+
+.nd-breadcrumb-item + .nd-breadcrumb-item::before {
+    content: "/";
+    margin-right: 6px;
+    opacity: .5;
+}
+
+.nd-breadcrumbs a {
+    color: var(--text-secondary);
+}
+
+.nd-breadcrumbs a:hover {
+    color: var(--primary);
+}
+
+/* Notices (added to cart, errors, info) */
+.nd-woocommerce-content .woocommerce-message,
+.nd-woocommerce-content .woocommerce-info,
+.nd-woocommerce-content .woocommerce-error,
+.nd-woocommerce-content .woocommerce-noreviews {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--primary);
+    border-radius: var(--radius);
+    padding: 16px 22px;
+    margin: 0 0 24px;
+    list-style: none;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.nd-woocommerce-content .woocommerce-error {
+    border-left-color: #f87171;
+}
+
+.nd-woocommerce-content .woocommerce-message .button,
+.nd-woocommerce-content .woocommerce-info .button {
+    order: 2;
+}
+
+/* Single product layout */
+.nd-woocommerce-content div.product {
+    display: grid;
+    grid-template-columns: minmax(0, 480px) 1fr;
+    align-items: start;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+@media (max-width: 900px) {
+    .nd-woocommerce-content div.product {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+.nd-woocommerce-content div.product div.images,
+.nd-woocommerce-content div.product .woocommerce-product-gallery {
+    /* WooCommerce's own woocommerce-layout.css sets float:left;width:48% on
+       this element, sized for its classic two-column float layout. Since
+       div.product here is a CSS grid with an explicit 480px track for this
+       column, that 48% resolves against the grid cell instead of a full-width
+       container and shrinks the gallery to well under half size. Reset it. */
+    float: none !important;
+    width: 100% !important;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+/* NOTE: do not force width/flex on .woocommerce-product-gallery__wrapper or
+   .woocommerce-product-gallery__image — WooCommerce's flexslider sets its
+   own inline widths/transforms on these (e.g. wrapper width: N*100%, each
+   slide 100/N%) to drive the carousel. Overriding them with !important was
+   tried previously and broke thumbnail click-to-swap on multi-image
+   galleries: forcing every slide to width:100% desyncs flexslider's slide
+   math from its transform offsets. Cosmetic-only styling here. */
+.nd-woocommerce-content .woocommerce-product-gallery__image img {
+    border-radius: 10px;
+}
+
+.nd-woocommerce-content .flex-control-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 0;
+    justify-content: center;
+}
+
+.nd-woocommerce-content .flex-control-nav li {
+    width: 64px;
+    height: 64px;
+}
+
+.nd-woocommerce-content .flex-control-thumbs img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 2px solid transparent;
+    opacity: .6;
+    cursor: pointer;
+    transition: .2s ease;
+}
+
+.nd-woocommerce-content .flex-control-thumbs img.flex-active,
+.nd-woocommerce-content .flex-control-thumbs img:hover {
+    opacity: 1;
+    border-color: var(--primary);
+}
+
+.nd-woocommerce-content div.summary.entry-summary {
+    /* Same WooCommerce core float:left;width:48% issue as div.images above. */
+    float: none !important;
+    width: 100% !important;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    box-sizing: border-box;
+}
+
+.nd-woocommerce-content .product_title {
+    order: -1;
+}
+
+.nd-woocommerce-content p.price,
+.nd-woocommerce-content span.price {
+    color: var(--primary);
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.nd-woocommerce-content p.price ins {
+    text-decoration: none;
+}
+
+.nd-woocommerce-content p.price del {
+    color: var(--text-secondary);
+    opacity: .7;
+    font-size: 1.1rem;
+    margin-right: 8px;
+}
+
+.nd-woocommerce-content .woocommerce-product-details__short-description {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+.nd-woocommerce-content .woocommerce-product-details__short-description p:first-child {
+    margin-top: 0;
+}
+
+/* Star ratings */
+.nd-woocommerce-content .star-rating {
+    font-size: .95rem;
+}
+
+.nd-woocommerce-content .woocommerce-review-link {
+    color: var(--text-secondary);
+    font-size: .85rem;
+}
+
+/* Cart / quantity / buttons */
+.nd-woocommerce-content .quantity .qty {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 12px 14px;
+    width: 70px;
+    font-size: 1rem;
+}
+
+.nd-woocommerce-content .cart {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.nd-woocommerce-content .button,
+.nd-woocommerce-content a.button,
+.nd-woocommerce-content button.button,
+.nd-woocommerce-content .single_add_to_cart_button,
+.nd-woocommerce-content input.button,
+.nd-woocommerce-content #place_order,
+.nd-woocommerce-content .checkout-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary) !important;
+    color: #ffffff !important;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 26px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: .25s ease;
+}
+
+.nd-woocommerce-content .button:hover,
+.nd-woocommerce-content a.button:hover,
+.nd-woocommerce-content button.button:hover,
+.nd-woocommerce-content .single_add_to_cart_button:hover,
+.nd-woocommerce-content input.button:hover,
+.nd-woocommerce-content #place_order:hover {
+    background: var(--primary-hover) !important;
+    transform: translateY(-2px);
+}
+
+/* WooCommerce core hardcodes ".button.alt" colours with !important —
+   match that specificity/importance or the brand-purple default wins. */
+.nd-woocommerce-content .button.alt {
+    background: var(--primary) !important;
+    color: #ffffff !important;
+}
+
+/* Meta (SKU, categories) */
+.nd-woocommerce-content .product_meta {
+    font-size: .85rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 10px;
+}
+
+.nd-woocommerce-content .product_meta a {
+    color: var(--primary);
+}
+
+/* Tabs (description / additional info / reviews) */
+.nd-woocommerce-content .woocommerce-tabs {
+    margin-top: 50px;
+    grid-column: 1 / -1;
+}
+
+.nd-woocommerce-content .woocommerce-tabs ul.tabs {
+    list-style: none;
+    display: flex;
+    gap: 6px;
+    margin: 0 0 -1px;
+    padding: 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.nd-woocommerce-content .woocommerce-tabs ul.tabs li {
+    margin: 0;
+    background: transparent !important;
+    border: none !important;
+}
+
+.nd-woocommerce-content .woocommerce-tabs ul.tabs li a {
+    display: inline-block;
+    padding: 12px 20px;
+    color: var(--text-secondary) !important;
+    background: transparent !important;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 10px 10px 0 0;
+}
+
+/* WooCommerce core sets the white background directly on the <li>, not the
+   <a> — overriding just the anchor left a white rim showing through. */
+.nd-woocommerce-content .woocommerce-tabs ul.tabs li.active {
+    background: var(--card) !important;
+    border-color: var(--border) !important;
+    border-bottom-color: var(--card) !important;
+}
+
+.nd-woocommerce-content .woocommerce-tabs ul.tabs li.active a {
+    color: var(--text) !important;
+    background: var(--card) !important;
+    border-color: var(--border);
+    border-bottom-color: var(--card);
+}
+
+.nd-woocommerce-content .woocommerce-tabs .panel {
+    background: var(--card) !important;
+    border: 1px solid var(--border);
+    border-radius: 0 var(--radius) var(--radius) var(--radius);
+    padding: 30px !important;
+    color: var(--text) !important;
+    line-height: 1.7;
+}
+
+.nd-woocommerce-content .woocommerce-tabs .panel h2 {
+    margin-top: 0;
+}
+
+/* Related products */
+.nd-woocommerce-content .related.products {
+    grid-column: 1 / -1;
+    margin-top: 60px;
+}
+
+.nd-woocommerce-content .related.products > h2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+/* Shop archive grid */
+.nd-woocommerce-content ul.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 900px) {
+    .nd-woocommerce-content ul.products,
+    .nd-woocommerce-content .related.products ul.products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .nd-woocommerce-content ul.products,
+    .nd-woocommerce-content .related.products ul.products {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* WooCommerce core assigns li.product a hardcoded float + percentage width
+   (e.g. "columns-4" => 22%) for its classic float-based grid. Since our
+   parent ul.products is already CSS grid, that leftover float/width just
+   shrinks each card and misaligns its contents — reset it explicitly. */
+.nd-woocommerce-content ul.products li.product {
+    float: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    padding: 20px;
+    transition: .25s ease;
+    text-align: left;
+}
+
+.nd-woocommerce-content ul.products li.product:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary);
+}
+
+.nd-woocommerce-content ul.products li.product img {
+    border-radius: 10px;
+    margin-bottom: 14px;
+}
+
+.nd-woocommerce-content ul.products li.product h2.woocommerce-loop-product__title,
+.nd-woocommerce-content ul.products li.product h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 8px;
+}
+
+.nd-woocommerce-content ul.products li.product .price {
+    font-size: 1.1rem;
+}
+
+.nd-woocommerce-content ul.products li.product .button {
+    margin-top: 14px;
+    width: 100%;
+    padding: 10px 18px;
+    font-size: .9rem;
+}
+
+/* Sorting / result count bar */
+.nd-woocommerce-content .woocommerce-notices-wrapper,
+.nd-woocommerce-content form.woocommerce-ordering,
+.nd-woocommerce-content .woocommerce-result-count {
+    color: var(--text-secondary);
+}
+
+.nd-woocommerce-content form.woocommerce-ordering select {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+.nd-woocommerce-content .woocommerce-pagination {
+    margin-top: 40px;
+}
+
+.nd-woocommerce-content .woocommerce-pagination ul {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+}
+
+.nd-woocommerce-content .woocommerce-pagination a,
+.nd-woocommerce-content .woocommerce-pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.nd-woocommerce-content .woocommerce-pagination .current {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+/* Cart page table */
+.nd-woocommerce-content table.shop_table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.nd-woocommerce-content table.shop_table th,
+.nd-woocommerce-content table.shop_table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+}
+
+.nd-woocommerce-content table.shop_table thead th {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: .75rem;
+    letter-spacing: .5px;
+}
+
+.nd-woocommerce-content .cart-collaterals .cart_totals {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+}
+
+.nd-woocommerce-content .cart_totals table {
+    width: 100%;
+}
+
+.nd-woocommerce-content .cart_totals table td,
+.nd-woocommerce-content .cart_totals table th {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+/* Checkout / account forms */
+.nd-woocommerce-content .woocommerce-billing-fields input,
+.nd-woocommerce-content .woocommerce-billing-fields select,
+.nd-woocommerce-content .woocommerce-additional-fields input,
+.nd-woocommerce-content .woocommerce-additional-fields select,
+.nd-woocommerce-content .woocommerce-account input,
+.nd-woocommerce-content #order_review input,
+.nd-woocommerce-content input[type="text"],
+.nd-woocommerce-content input[type="email"],
+.nd-woocommerce-content input[type="tel"],
+.nd-woocommerce-content input[type="password"],
+.nd-woocommerce-content textarea,
+.nd-woocommerce-content select {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 10px;
+    padding: 12px 14px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.nd-woocommerce-content label {
+    color: var(--text-secondary);
+    font-size: .9rem;
+}
+
+.nd-woocommerce-content #payment {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-top: 20px;
+}
+
+.nd-woocommerce-content #payment ul.payment_methods {
+    list-style: none;
+    padding: 0;
+}
+
+/* WooCommerce Blocks checkout/cart (Cart, Checkout pages use the block-based
+   experience, not the classic shortcode markup styled above — separate
+   class namespace: wc-block-components-*). Inputs already sit on a white
+   box with dark text from WC's own styling, which is fine; but the
+   floating field labels ("First name", "Postcode", etc.) inherited the
+   theme's light --text colour meant for dark backgrounds, making them
+   almost invisible against the white input. */
+.nd-woocommerce-content .wc-block-components-text-input label,
+.nd-woocommerce-content .wc-block-components-textarea label,
+.nd-woocommerce-content .wc-block-components-address-form label,
+.nd-woocommerce-content .wc-block-components-combobox label,
+.nd-woocommerce-content .wc-block-components-radio-control label {
+    color: #6b7280 !important;
+}
+
+.nd-woocommerce-content .wc-block-components-checkout-place-order-button,
+.nd-woocommerce-content .wc-block-cart__submit-button {
+    background: var(--primary) !important;
+    color: #ffffff !important;
+}
+
+.nd-woocommerce-content .wc-block-components-checkout-place-order-button:hover,
+.nd-woocommerce-content .wc-block-cart__submit-button:hover {
+    background: var(--primary-hover) !important;
+}
+
+/* My account */
+.nd-woocommerce-content .woocommerce-MyAccount-navigation ul {
+    list-style: none;
+    padding: 0;
+}
+
+.nd-woocommerce-content .woocommerce-MyAccount-navigation li a {
+    display: block;
+    padding: 12px 16px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+}
+
+.nd-woocommerce-content .woocommerce-MyAccount-navigation li.is-active a {
+    background: var(--card);
+    color: var(--primary);
+    border: 1px solid var(--border);
+}
+
+.nd-woocommerce-content .woocommerce-MyAccount-content {
+    margin-top: 20px;
+}
+
+
+/* Dark-theme fixes for Jetpack form fields (contact form + subscribe widget) —
+ * these render with browser/plugin default styling otherwise (white boxes on
+ * the contact form, near-invisible dark-on-dark text on the subscribe field). */
+.grunion-field,
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form input[type="url"],
+.contact-form textarea,
+.contact-form select {
+	background: var(--card, #111113) !important;
+	color: var(--text, #e5e7eb) !important;
+	border: 1px solid var(--border, #232327) !important;
+	border-radius: 10px !important;
+}
+.grunion-field::placeholder,
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+	color: var(--text-secondary, #9CA3AF) !important;
+	opacity: 1;
+}
+
+.wp-block-jetpack-subscriptions input[type="email"] {
+	color: var(--text, #e5e7eb) !important;
+	background: var(--card, #111113) !important;
+	border: 1px solid var(--border, #232327) !important;
+}
+.wp-block-jetpack-subscriptions input[type="email"]::placeholder {
+	color: var(--text-secondary, #9CA3AF) !important;
+	opacity: 1;
+}
+
+
+.wp-block-group:has(.wp-block-jetpack-subscriptions) .wp-block-heading,
+.wp-block-group:has(.wp-block-jetpack-subscriptions) h2,
+.wp-block-group:has(.wp-block-jetpack-subscriptions) h3 {
+	color: var(--text, #e5e7eb) !important;
+}
+.wp-block-group:has(.wp-block-jetpack-subscriptions) p {
+	color: var(--text-secondary, #9CA3AF) !important;
+}
+
+
+/* Premium site-wide button/CTA standard — matches the accent card language
+   used on download-hub and Gear We Recommend cards. Excludes
+   .no-border-radius (e.g. the Jetpack subscribe widget button, a separate
+   functional control that shouldn't be restyled). */
+.wp-block-button__link.wp-element-button:not(.no-border-radius),
+.wp-block-button__link:not(.no-border-radius) {
+    background-color: var(--primary) !important;
+    color: #04202b !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    transition: filter .15s ease, transform .15s ease;
+}
+.wp-block-button__link.wp-element-button:not(.no-border-radius):hover,
+.wp-block-button__link:not(.no-border-radius):hover {
+    filter: brightness(1.08);
+    color: #04202b !important;
+    transform: translateY(-1px);
+}
+.wp-block-button.is-style-outline .wp-block-button__link:not(.no-border-radius) {
+    background-color: transparent !important;
+    color: var(--text) !important;
+    border: 1px solid var(--border) !important;
+}
+.wp-block-button.is-style-outline .wp-block-button__link:not(.no-border-radius):hover {
+    background-color: var(--primary) !important;
+    color: #04202b !important;
+}
+
+
+/* =====================================
+   Site Fixes & Refinements (WooCommerce)
+===================================== */
+
+/* Fix: WooCommerce clearfix pseudo-elements (content:" "; display:table;)
+   become real grid items once ul.products uses display:grid, silently
+   occupying the first cell as blank space and pushing every visible
+   product tile over by one slot — the "missing black slot" bug. */
+.nd-woocommerce-content ul.products::before,
+.nd-woocommerce-content ul.products::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* =====================================
+   Gear We Recommend cards (tgh-gear-*)
+   Fix: this markup shipped with zero CSS,
+   rendering as bare unstyled text with a
+   stray trailing arrow glyph (2 Aug 2026)
+===================================== */
+.tgh-gear-card {
+    background: #111113;
+    border: 1px solid #232327;
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 28px 0;
+}
+.tgh-gear-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.tgh-gear-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: #38BDF8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+.tgh-gear-heading {
+    font-weight: 600;
+    font-size: 15px;
+    color: #fff;
+    margin: 0;
+}
+.tgh-gear-desc {
+    font-size: 13.5px;
+    color: #9CA3AF;
+    margin: 0 0 16px;
+    line-height: 1.5;
+}
+.tgh-gear-card .tgh-gear-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #38BDF8 !important;
+    color: #04202b !important;
+    font-weight: 600;
+    font-size: 13.5px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+}
+.tgh-gear-card .tgh-gear-btn:hover {
+    filter: brightness(1.08);
+}
+.tgh-gear-disc {
+    font-size: 11px;
+    color: #6b7280;
+    margin: 14px 0 0;
+}
+.tgh-gear-disc a {
+    color: #38BDF8;
+}
+
+
+/* _____________________________________
+   Site Fixes & Refinements — Batch 2
+   (moved out of Customizer Additional CSS
+   into the theme file, 2 Aug 2026)
+_____________________________________ */
+
+/* Fix: allow long table cell content to wrap instead of overflowing into neighbouring cells (was white-space: nowrap sitewide) */
+.nd-article-content .wp-block-table table,
+.nd-page-content .wp-block-table table {
+    white-space: normal !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Fix: static Pages (FAQ, Advertising, Contact, Terms, etc.) were capped at max-width:900px while every other template (blog posts, shop, homepage) uses the site's normal 1300px container - this made page content look narrow and left-of-center on wide screens. Match it to the rest of the site. */
+.nd-page {
+    max-width: var(--container-width) !important;
+}
+
+/* Fix: category archive intro copy (.nd-archive-description) was capped at max-width:700px inside a 1300px-wide header, making a full paragraph render as a tall narrow column instead of using the available width. */
+.nd-archive-description {
+    max-width: 1100px !important;
+}
+
+/* Fix: .nd-post-grid (Featured Guides, Latest Posts, Category Section grids) has an intended mobile 1-column rule at max-width:1000px, but it never applied because more specific unconditional selectors (.nd-featured-posts .nd-post-grid, .nd-latest-posts .nd-post-grid, .nd-category-section .nd-post-grid) force 3 columns at every width, including mobile - resulting in 3 squashed columns on phones. Force the mobile collapse to actually win. */
+@media (max-width: 1000px) {
+    .nd-featured-posts .nd-post-grid,
+    .nd-latest-posts .nd-post-grid,
+    .nd-category-section .nd-post-grid,
+    .nd-post-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* Fix: on mobile, .nd-article-layout correctly collapses to a single grid column at max-width:1200px, but uses bare 1fr instead of minmax(0, 1fr) - so a wide child (a pre code block with long unwrapped PowerShell lines) forces the grid track to grow to fit its content instead of shrinking, blowing the whole article layout out to ~1300px wide on a 375px phone. pre already has overflow-x:auto, it just never gets the chance to use it. minmax(0, 1fr) caps the track so pre's own scroll takes over instead. */
+@media (max-width: 1200px) {
+    .nd-article-layout {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+
+/* grid blowout fix - pass 2: the same bare-1fr issue found in .nd-article-layout affects several other mobile grid collapses across the theme - any wide child (long code line, large fixed-size image, etc) forces these tracks to grow past the viewport instead of shrinking. Widening the fix to all of them. */
+@media (max-width: 1000px) {
+    .nd-post-grid,
+    .nd-container,
+    .nd-article-header-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+@media (max-width: 480px) {
+    .nd-category-grid {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+@media (max-width: 900px) {
+    div.product {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+@media (max-width: 600px) {
+    ul.products {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+
+/* Fix: .nd-footer-widgets (Popular Posts / Popular Downloads / Subscribe columns) has no mobile handling at all - display:flex with no wrap or direction change squeezes all 3 columns side-by-side into ~137px each on a phone, breaking the subscribe form. Stack them vertically below tablet width. */
+@media (max-width: 768px) {
+    .nd-footer-widgets {
+        flex-direction: column !important;
+    }
+}
+
+/* Fix: shop pagination (.page-numbers) doesn't wrap on narrow screens - with 9 pages of products it overflows slightly past the viewport on mobile. */
+@media (max-width: 480px) {
+    .woocommerce-pagination ul.page-numbers,
+    ul.page-numbers {
+        flex-wrap: wrap !important;
+    }
+}
+
+
+/* Related Guides card (T083/T084) — reuses the tgh-gear-card shell/badge/heading
+   pattern for visual consistency, swaps in a linked list instead of a button. */
+.tgh-related-box {
+    background: #111113;
+    border: 1px solid #232327;
+    border-radius: 14px;
+    padding: 20px 22px;
+    margin: 28px 0;
+}
+.tgh-related-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.tgh-related-list li {
+    padding: 7px 0;
+    border-top: 1px solid #232327;
+}
+.tgh-related-list li:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+.tgh-related-list li:last-child {
+    padding-bottom: 0;
+}
+.tgh-related-list a {
+    color: #d1d5db;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tgh-related-list a::before {
+    content: "\2192";
+    color: #38BDF8;
+    flex-shrink: 0;
+    font-weight: 700;
+}
+.tgh-related-list a:hover {
+    color: #38BDF8;
+}
+
+/* =====================================
+   WordPress Core Content Classes
+   (captions, galleries, alignment, sticky posts —
+   output by core regardless of editor used)
+===================================== */
+
+.wp-caption {
+    max-width: 100%;
+    margin: 0 0 24px;
+}
+
+.wp-caption img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.wp-caption-text {
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-align: center;
+    padding: 8px 4px 0;
+}
+
+.gallery-caption {
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-align: center;
+    display: block;
+    padding: 6px 4px 0;
+}
+
+.sticky {
+    position: relative;
+}
+
+.bypostauthor {
+    display: block;
+}
+
+.alignleft {
+    float: left;
+    margin: 6px 24px 12px 0;
+}
+
+.alignright {
+    float: right;
+    margin: 6px 0 12px 24px;
+}
+
+.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
