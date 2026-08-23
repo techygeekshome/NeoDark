@@ -8,7 +8,8 @@
 
 [![Version](https://img.shields.io/badge/version-1.1.7-4c9bff)](https://techygeekshome.info/product/neodark/)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%2B-0078d4)](https://techygeekshome.info/product/neodark/)
-[![License](https://img.shields.io/badge/license-proprietary%20freeware-b7791f)](LICENSE)
+[![WordPress.org](https://img.shields.io/badge/WordPress.org-live%20in%20the%20theme%20directory-0078d4)](https://wordpress.org/themes/neodark/)
+[![License](https://img.shields.io/badge/license-proprietary%20freeware-3fb950)](LICENSE)
 [![Made by TechyGeeksHome](https://img.shields.io/badge/made%20by-TechyGeeksHome-b191f2)](https://techygeekshome.info)
 [![Support on Ko-fi](https://img.shields.io/badge/support-Ko--fi-ff5e5b)](https://ko-fi.com/techygeekshome)
 
@@ -42,11 +43,12 @@ NeoDark does not include any remote/CDN-loaded scripts, styles, or fonts, and st
 
 | What it is | Get it |
 | --- | --- |
-| WordPress theme *(PHP, no build step)* | [**NeoDark on techygeekshome.info**](https://techygeekshome.info/product/neodark/) — free, download the zip directly (WordPress.org Theme Directory listing pending review) |
+| WordPress theme *(recommended)* | [**NeoDark on WordPress.org**](https://wordpress.org/themes/neodark/) — install straight from Appearance > Themes > Add New, and get automatic updates |
+| WordPress theme *(direct zip)* | [**NeoDark on techygeekshome.info**](https://techygeekshome.info/product/neodark/) — free, download the zip directly |
 
 Already have the zip? In your WordPress admin, go to Appearance > Themes > Add New > Upload Theme, activate, then visit Appearance > Customize > NeoDark Homepage to choose which categories appear as homepage sections.
 
-Looking for more layout options, a mega menu, or comparison-table blocks? See [NeoDark Pro](https://techygeekshome.info).
+Looking for more layout options, a mega menu, or comparison-table blocks? See [NeoDark Pro](https://techygeekshome.info/neodark-pro/).
 
 ## 📦 Source in this repository
 
