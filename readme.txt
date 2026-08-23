@@ -3,7 +3,7 @@ Contributors: techygeekshome
 Requires at least: 6.4
 Tested up to: 7.0
 Requires PHP: 7.4
-Version: 1.1.7
+Version: 1.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: blog, one-column, custom-menu, custom-logo, featured-images, footer-widgets, threaded-comments, translation-ready, block-patterns, block-styles, editor-style, wide-blocks
@@ -50,6 +50,9 @@ Yes. NeoDark includes WooCommerce compatibility fixes out of the box (correct pr
 NeoDark Pro adds multiple homepage layouts, additional content blocks for reviews and comparisons, a mega menu, and more. See https://techygeekshome.info for details.
 
 == Changelog ==
+
+= 1.1.8 =
+* Fix: replaced screenshot.png — the demo homepage mockup referenced trademarked third-party product/service names (ChatGPT, Windows, Dell XPS) in sample article titles and a category label. Replaced with generic, non-trademarked placeholder content.
 
 = 1.1.7 =
 * Fix: removed generator-tag removal (remove_action('wp_head','wp_generator')) and two other non-presentational hacks (an SEO-motivated nofollow script, and a MutationObserver that deleted an unrelated third-party font request) from inc/site-enhancements.php. This was plugin-territory functionality that had been merged into the theme from an old separate plugin - it's been stripped back to only the two presentational tweaks that belong in a theme (jQuery defer, WooCommerce thumbnail crop fix).
