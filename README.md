@@ -6,7 +6,7 @@
 
 **A fast, lightweight dark-mode WordPress theme built for tech guides, tutorials, and review sites.**
 
-[![Version](https://img.shields.io/badge/version-1.1.7-4c9bff)](https://techygeekshome.info/product/neodark/)
+[![Version](https://img.shields.io/github/v/release/techygeekshome/neodark?label=version&color=4c9bff)](https://github.com/techygeekshome/neodark/releases)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%2B-0078d4)](https://techygeekshome.info/product/neodark/)
 [![WordPress.org](https://img.shields.io/badge/WordPress.org-live%20in%20the%20theme%20directory-0078d4)](https://wordpress.org/themes/neodark/)
 [![License](https://img.shields.io/badge/license-proprietary%20freeware-3fb950)](LICENSE)
