@@ -95,6 +95,43 @@ document.addEventListener('DOMContentLoaded', () => {
         if (mobileMenuClose) {
             mobileMenuClose.addEventListener('click', closeMobileMenu);
         }
+
+        // ---- Submenus inside the mobile menu ----
+        // wp_nav_menu prints children as a nested <ul>, and nothing here used to touch them, so
+        // a menu with submenus arrived fully unfolded. Each parent now gets its own toggle and
+        // its children stay put away until that toggle is pressed. Hidden children drop out of
+        // the focus trap on their own, because it only counts what is actually on screen.
+        mobileMenu.querySelectorAll('.menu-item-has-children').forEach((item, index) => {
+            const submenu = item.querySelector(':scope > .sub-menu');
+
+            if (!submenu) {
+                return;
+            }
+
+            const link = item.querySelector(':scope > a');
+            const name = link ? link.textContent.trim() : '';
+
+            submenu.id = submenu.id || 'nd-submenu-' + (index + 1);
+            submenu.hidden = true;
+
+            const toggle = document.createElement('button');
+            toggle.type = 'button';
+            toggle.className = 'nd-submenu-toggle';
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-controls', submenu.id);
+            toggle.setAttribute('aria-label', name);
+            toggle.innerHTML = '<span aria-hidden="true">&#9662;</span>';
+
+            toggle.addEventListener('click', () => {
+                const open = toggle.getAttribute('aria-expanded') === 'true';
+
+                toggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+                submenu.hidden = open;
+                item.classList.toggle('nd-submenu-open', !open);
+            });
+
+            item.insertBefore(toggle, submenu);
+        });
     }
 
     // ---- Search overlay ----
