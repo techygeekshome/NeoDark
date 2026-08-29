@@ -51,6 +51,10 @@ NeoDark Pro adds multiple homepage layouts, additional content blocks for review
 
 == Changelog ==
 
+= 1.1.9 =
+* Fix: the mobile menu could not be scrolled. The panel is rendered inside a position: sticky header and had no height limit, so on a menu taller than the screen everything past the fold was unreachable. It now takes the height it has and scrolls. Reported in #1.
+* Fix: submenus were expanded permanently in the mobile menu, which is what made the list long enough to run off the screen in the first place. Each submenu now has its own toggle and starts collapsed. Reported in #1.
+
 = 1.1.8 =
 * Fix: replaced screenshot.png — the demo homepage mockup referenced trademarked third-party product/service names (ChatGPT, Windows, Dell XPS) in sample article titles and a category label. Replaced with generic, non-trademarked placeholder content.
 
