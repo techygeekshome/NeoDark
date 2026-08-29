@@ -4,7 +4,7 @@ Theme URI: https://techygeekshome.info/neodark/
 Description: A fast, lightweight dark-mode WordPress theme built for tech guides, tutorials and review sites. Built for TechyGeeksHome.
 Author: TechyGeeksHome
 Author URI: https://techygeekshome.info
-Version: 1.1.8
+Version: 1.1.9
 Requires at least: 6.4
 Tested up to: 7.0
 Requires PHP: 7.4
@@ -236,6 +236,47 @@ a {
     gap: 12px;
 }
 
+/* Collapsed until its toggle is pressed. The attribute selector is what beats the display:flex
+   above, so the children genuinely go away rather than only losing their box. */
+.nd-mobile-menu-list .sub-menu[hidden] {
+    display: none;
+}
+
+.nd-mobile-menu-list .menu-item-has-children {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.nd-mobile-menu-list .menu-item-has-children > .sub-menu {
+    flex-basis: 100%;
+}
+
+.nd-submenu-toggle {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    transition: transform .15s ease, color .15s ease;
+}
+
+.nd-submenu-toggle:hover,
+.nd-submenu-toggle:focus-visible {
+    color: var(--primary);
+}
+
+.nd-submenu-open > .nd-submenu-toggle {
+    transform: rotate(180deg);
+}
+
 /* =====================================
    Mobile Menu
 ===================================== */
@@ -284,6 +325,12 @@ a {
 
 .nd-mobile-menu.active {
     display: flex;
+    /* The header is sticky, so a menu taller than the screen used to run off the bottom of it
+       with no way to reach the rest. It scrolls inside itself now. */
+    box-sizing: border-box;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
 }
 
 .nd-mobile-menu-list {
