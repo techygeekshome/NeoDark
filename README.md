@@ -62,7 +62,7 @@ Found a bug or have a feature request? [Get in touch](https://techygeekshome.inf
 
 NeoDark is free to download and use. This repository is proprietary freeware, not an open-source project — see [LICENSE](LICENSE) for the full terms. (Any copy distributed via the official WordPress Theme Directory is licensed GPLv2-or-later, as required by wordpress.org — see the note in [LICENSE](LICENSE).)
 
-© 2026 TechyGeeksHome | Andrew Armstrong.
+© 2026 TechyGeeksHome.
 
 ---
 
