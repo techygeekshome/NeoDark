@@ -9,7 +9,7 @@
 [![Version](https://img.shields.io/github/v/release/techygeekshome/neodark?label=version&color=4c9bff)](https://github.com/techygeekshome/neodark/releases)
 [![WordPress](https://img.shields.io/badge/WordPress-6.4%2B-0078d4)](https://techygeekshome.info/product/neodark/)
 [![WordPress.org](https://img.shields.io/badge/WordPress.org-live%20in%20the%20theme%20directory-0078d4)](https://wordpress.org/themes/neodark/)
-[![License](https://img.shields.io/badge/license-proprietary%20freeware-3fb950)](LICENSE)
+[![License](https://img.shields.io/badge/License-GPL--2.0--or--later-blue)](LICENSE)
 [![Made by TechyGeeksHome](https://img.shields.io/badge/made%20by-TechyGeeksHome-b191f2)](https://techygeekshome.info)
 [![Support on Ko-fi](https://img.shields.io/badge/support-Ko--fi-ff5e5b)](https://ko-fi.com/techygeekshome)
 
@@ -60,7 +60,7 @@ Found a bug or have a feature request? [Get in touch](https://techygeekshome.inf
 
 ## 📄 License
 
-NeoDark is free to download and use. This repository is proprietary freeware, not an open-source project — see [LICENSE](LICENSE) for the full terms. (Any copy distributed via the official WordPress Theme Directory is licensed GPLv2-or-later, as required by wordpress.org — see the note in [LICENSE](LICENSE).)
+NeoDark is free software under the **GNU General Public License v2.0 or later**, the same licence as WordPress itself. See [LICENSE](LICENSE) and [gnu.org](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html). Anyone may use, modify and share it; a distributed modification must publish its source under the same licence.
 
 © 2026 TechyGeeksHome.
 
